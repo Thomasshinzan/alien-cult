@@ -1,0 +1,8 @@
+[
+    { "level": 0, "name": "廃屋", "cost": 0, "bonusMultiplier": 1.0, "desc": "隙間風が吹き込むボロボロの廃屋。雨を凌ぐのが精一杯だ。" },
+    { "level": 1, "name": "安アパート", "cost": 2000, "bonusMultiplier": 1.2, "desc": "壁が薄い風呂なしアパート。人間の生活というものを理解し始める。" },
+    { "level": 2, "name": "普通のアパート", "cost": 5000, "bonusMultiplier": 1.5, "desc": "それなりに生活できるアパート。信者を招き入れても怪しまれない。" },
+    { "level": 3, "name": "マンション", "cost": 15000, "bonusMultiplier": 2.0, "desc": "セキュリティのしっかりしたマンション。教団の小さな拠点として機能する。" },
+    { "level": 4, "name": "一軒家", "cost": 50000, "bonusMultiplier": 2.5, "desc": "地下室付きの立派な一軒家。近隣の目を気にせず怪しい儀式が可能だ。" },
+    { "level": 5, "name": "豪邸", "cost": 200000, "bonusMultiplier": 3.0, "desc": "要塞のように堅牢な豪邸。もはや地域の権力者と同等の暮らしぶりだ。" }
+]

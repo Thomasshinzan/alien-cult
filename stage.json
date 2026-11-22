@@ -1,0 +1,22 @@
+[
+    {
+        "name": "ステージ1：町のカルト",
+        "bossCondition": 10,
+        "bossId": "unique_001"
+    },
+    {
+        "name": "ステージ2：地域のカルト",
+        "bossCondition": 100,
+        "bossId": "unique_002"
+    },
+    {
+        "name": "ステージ3：国家のカルト",
+        "bossCondition": 1000,
+        "bossId": "unique_003"
+    },
+    {
+        "name": "ステージ4：政治の支配",
+        "bossCondition": 10000,
+        "bossId": ""
+    }
+]
