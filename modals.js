@@ -114,6 +114,9 @@ function renderExecutives() {
                     state.cultStats.followers += exec.skill.effect.followers;
                     updateAlienPower();
                 }
+                if (exec.skill.effect.growthRate) {
+                    state.growthBonus = (state.growthBonus || 0) + exec.skill.effect.growthRate;
+                }
                 
                 render();
                 saveGame();

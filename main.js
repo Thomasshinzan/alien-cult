@@ -1,4 +1,4 @@
-import { state, saveGame, loadGame } from './state.js';
+import { state, saveGame, loadGame, computeGrowthRate } from './state.js';
 import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss } from './stage.js';
 import { showAlert, updateAlienPower, render } from './ui.js';
 import { initModals } from './modals.js';
@@ -52,7 +52,7 @@ btnBrainwash.onclick = async () => {
 
         if (target.brainwash >= 100) {
             state.cultStats.followers += 1;
-            if (target.influence) state.cultStats.followers += target.influence;
+            if (target.influence) state.growthBonus = (state.growthBonus || 0) + target.influence * 0.0005;
             state.cultStats.suspicion += 3;
             
             if (target.isBoss) {
@@ -98,8 +98,7 @@ btnEndTurn.onclick = async () => {
             if (baseDonation > 0) fundAmount = baseDonation;
         } else if (human.action === 'recruit') {
             hpChange = -15;
-            const baseRecruit = Math.floor(human.recruit * (human.brainwash / 100) * bonusMultiplier);
-            if (baseRecruit > 0) recruitAmount = baseRecruit;
+            // 勧誘は信者成長率への貢献として処理（computeGrowthRate参照）
         } else if (human.action === 'stealth') {
             hpChange = -25;
             stealthAmount = 5; 
@@ -109,10 +108,14 @@ btnEndTurn.onclick = async () => {
 
         if (human.hp > 0) {
             if (fundAmount > 0) state.cultStats.funds += fundAmount;
-            if (recruitAmount > 0) state.cultStats.followers += recruitAmount;
             if (stealthAmount > 0) state.cultStats.suspicion -= stealthAmount;
         }
     });
+
+    // 信者の複利成長（信者が信者を呼ぶ）
+    if (state.cultStats.followers > 0) {
+        state.cultStats.followers += state.cultStats.followers * computeGrowthRate();
+    }
 
     state.cultStats.suspicion += baseSuspicionIncrease;
 
@@ -148,7 +151,7 @@ btnEndTurn.onclick = async () => {
             if (state.selectedHumanId === human.id) state.selectedHumanId = null;
         } else if (human.brainwash >= 100) {
             state.cultStats.followers += 1;
-            if (human.influence) state.cultStats.followers += human.influence;
+            if (human.influence) state.growthBonus = (state.growthBonus || 0) + human.influence * 0.0005;
             state.cultStats.suspicion += 3;
             
             if (human.isBoss) {

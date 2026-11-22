@@ -1,4 +1,12 @@
-import { state, MAX_SLOTS, SAVE_KEY } from './state.js';
+import { state, MAX_SLOTS, SAVE_KEY, computeGrowthRate } from './state.js';
+
+// 大きな数を「1.2億」「345万」のように単位表示する
+export function formatNumber(n) {
+    n = Math.floor(n);
+    if (n >= 100000000) return (Math.round(n / 10000000) / 10).toLocaleString() + '億';
+    if (n >= 10000) return (Math.round(n / 1000) / 10).toLocaleString() + '万';
+    return n.toLocaleString();
+}
 import { getCurrentStage } from './stage.js';
 
 // メイン画面DOM
@@ -55,8 +63,9 @@ export function render() {
     stageDisplay.innerText = currentStage.name;
     turnDisplay.innerText = state.currentTurn;
 
-    document.getElementById('stat-followers').innerText = state.cultStats.followers;
-    document.getElementById('stat-funds').innerText = state.cultStats.funds;
+    document.getElementById('stat-followers').innerText = formatNumber(state.cultStats.followers);
+    document.getElementById('stat-funds').innerText = Math.floor(state.cultStats.funds).toLocaleString();
+    document.getElementById('stat-growth').innerText = '+' + (computeGrowthRate() * 100).toFixed(1) + '%';
     statSuspicion.innerText = `${state.cultStats.suspicion}%`;
 
     if (state.cultStats.suspicion >= 70) statSuspicion.classList.add('danger-text');
@@ -95,7 +104,7 @@ export function render() {
                 const roleStatHtml = isRecruiter
                     ? `<span>勧誘: <span style="color:#4fc3f7">${human.recruit}</span></span>`
                     : human.type === 'elite'
-                    ? `<span>労働: <span style="color:#ddd">${human.labor}</span></span> <span>影響力: <span style="color:#ffd54f">+${human.influence || 0}</span></span>`
+                    ? `<span>労働: <span style="color:#ddd">${human.labor}</span></span> <span>影響力: <span style="color:#ffd54f">成長率+${((human.influence || 0) * 0.05).toFixed(1)}%</span></span>`
                     : `<span>労働: <span style="color:#ddd">${human.labor}</span></span>`;
 
                 slotDiv.innerHTML = `

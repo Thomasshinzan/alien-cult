@@ -91,9 +91,9 @@
             "willpower": 80,
             "skill": {
                 "name": "広告塔",
-                "description": "精神力(MP)を500消費して、信者数を50増やす。",
+                "description": "精神力(MP)を500消費して、信者の成長率を永続的に+1%する。",
                 "cost": { "mp": 500 },
-                "effect": { "followers": 50 }
+                "effect": { "growthRate": 0.01 }
             }
         },
         {

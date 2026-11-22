@@ -1,22 +1,52 @@
 [
     {
-        "name": "ステージ1：町のカルト",
         "bossCondition": 10,
-        "bossId": "unique_001"
+        "bossId": "unique_001",
+        "name": "ステージ1：町のカルト"
     },
     {
-        "name": "ステージ2：地域のカルト",
         "bossCondition": 100,
-        "bossId": "unique_002"
+        "bossId": "unique_002",
+        "name": "ステージ2：地域のカルト"
     },
     {
-        "name": "ステージ3：国家のカルト",
         "bossCondition": 1000,
-        "bossId": "unique_003"
+        "bossId": "unique_003",
+        "name": "ステージ3：国家のカルト"
     },
     {
-        "name": "ステージ4：政治の支配",
         "bossCondition": 10000,
-        "bossId": ""
+        "bossId": "",
+        "name": "ステージ4：政治の支配"
+    },
+    {
+        "bossCondition": 100000,
+        "bossId": "",
+        "name": "ステージ5：国家中枢"
+    },
+    {
+        "bossCondition": 1000000,
+        "bossId": "",
+        "name": "ステージ6：大国進出"
+    },
+    {
+        "bossCondition": 10000000,
+        "bossId": "",
+        "name": "ステージ7：世界の裏社会"
+    },
+    {
+        "bossCondition": 100000000,
+        "bossId": "",
+        "name": "ステージ8：国際機関の掌握"
+    },
+    {
+        "bossCondition": 1000000000,
+        "bossId": "",
+        "name": "ステージ9：地球連合建国"
+    },
+    {
+        "bossCondition": 8000000000,
+        "bossId": "",
+        "name": "ステージ10：永久総統就任"
     }
 ]
