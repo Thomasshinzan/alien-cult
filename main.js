@@ -52,7 +52,7 @@ btnBrainwash.onclick = async () => {
 
         if (target.brainwash >= 100) {
             state.cultStats.followers += 1;
-            state.cultStats.suspicion += 5; 
+            state.cultStats.suspicion += 3; 
             
             if (target.isBoss) {
                 state.executives.push(target.uniqueData);
@@ -79,7 +79,7 @@ btnEndTurn.onclick = async () => {
     state.currentTurn++;
     state.alien.mp = Math.min(state.alien.maxMp, state.alien.mp + state.alien.regenMp);
     
-    let baseSuspicionIncrease = 2;
+    let baseSuspicionIncrease = 1;
     const currentHideout = hideoutData[state.hideoutLevel];
     const bonusMultiplier = (currentHideout && currentHideout.bonusMultiplier) ? currentHideout.bonusMultiplier : 1.0;
     
@@ -147,7 +147,7 @@ btnEndTurn.onclick = async () => {
             if (state.selectedHumanId === human.id) state.selectedHumanId = null;
         } else if (human.brainwash >= 100) {
             state.cultStats.followers += 1;
-            state.cultStats.suspicion += 5; 
+            state.cultStats.suspicion += 3; 
             
             if (human.isBoss) {
                 state.executives.push(human.uniqueData);
