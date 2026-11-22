@@ -39,6 +39,34 @@
         { "name": "バーテンダー", "baseRecruit": 3, "hpMod": 10, "baseWillpower": 22 },
         { "name": "塾講師", "baseRecruit": 3, "hpMod": 5, "baseWillpower": 28 }
     ],
+    "eliteModifiers": [
+        { "name": "世襲の", "laborMod": 1, "hpMod": 5, "willpowerMod": -10, "influenceMod": 3 },
+        { "name": "叩き上げの", "laborMod": 2, "hpMod": 10, "willpowerMod": 10, "influenceMod": 0 },
+        { "name": "清廉潔白な", "laborMod": 0, "hpMod": 0, "willpowerMod": 25, "influenceMod": 2 },
+        { "name": "腐敗した", "laborMod": 1, "hpMod": -5, "willpowerMod": -15, "influenceMod": 1 },
+        { "name": "狡猾な", "laborMod": 1, "hpMod": 0, "willpowerMod": 15, "influenceMod": 2 },
+        { "name": "大物の", "laborMod": 3, "hpMod": 5, "willpowerMod": 10, "influenceMod": 5 },
+        { "name": "黒幕の", "laborMod": 2, "hpMod": 0, "willpowerMod": 20, "influenceMod": 4 },
+        { "name": "野心家の", "laborMod": 2, "hpMod": 5, "willpowerMod": 5, "influenceMod": 3 }
+    ],
+    "eliteProfessions": [
+        { "name": "IT系企業CEO", "baseLabor": 12, "hpMod": -5, "baseWillpower": 60, "baseInfluence": 10 },
+        { "name": "大手銀行頭取", "baseLabor": 14, "hpMod": -10, "baseWillpower": 70, "baseInfluence": 12 },
+        { "name": "総合商社会長", "baseLabor": 13, "hpMod": 0, "baseWillpower": 65, "baseInfluence": 11 },
+        { "name": "不動産開発社長", "baseLabor": 12, "hpMod": 5, "baseWillpower": 55, "baseInfluence": 9 },
+        { "name": "投資ファンド代表", "baseLabor": 15, "hpMod": -5, "baseWillpower": 75, "baseInfluence": 10 },
+        { "name": "メディアグループ会長", "baseLabor": 11, "hpMod": 0, "baseWillpower": 60, "baseInfluence": 14 },
+        { "name": "製薬会社会長", "baseLabor": 12, "hpMod": 0, "baseWillpower": 70, "baseInfluence": 9 },
+        { "name": "経済団体連合会長", "baseLabor": 10, "hpMod": 5, "baseWillpower": 65, "baseInfluence": 15 },
+        { "name": "財務省官僚", "baseLabor": 9, "hpMod": 0, "baseWillpower": 80, "baseInfluence": 12 },
+        { "name": "経済産業省官僚", "baseLabor": 9, "hpMod": 0, "baseWillpower": 75, "baseInfluence": 11 },
+        { "name": "国会議員", "baseLabor": 8, "hpMod": 5, "baseWillpower": 60, "baseInfluence": 15 },
+        { "name": "与党幹事長", "baseLabor": 9, "hpMod": 0, "baseWillpower": 85, "baseInfluence": 18 },
+        { "name": "大臣秘書官", "baseLabor": 8, "hpMod": -5, "baseWillpower": 55, "baseInfluence": 10 },
+        { "name": "警察庁幹部", "baseLabor": 8, "hpMod": 10, "baseWillpower": 90, "baseInfluence": 9 },
+        { "name": "防衛省官僚", "baseLabor": 8, "hpMod": 5, "baseWillpower": 85, "baseInfluence": 10 },
+        { "name": "最高裁判所判事", "baseLabor": 7, "hpMod": 0, "baseWillpower": 95, "baseInfluence": 11 }
+    ],
     "uniques": [
         {
             "id": "unique_001",

@@ -94,6 +94,8 @@ export function render() {
                 const actionClass = human.action === 'rest' ? 'active-rest' : (human.action === 'labor' || human.action === 'recruit') ? 'active-labor' : 'active-stealth';
                 const roleStatHtml = isRecruiter
                     ? `<span>勧誘: <span style="color:#4fc3f7">${human.recruit}</span></span>`
+                    : human.type === 'elite'
+                    ? `<span>労働: <span style="color:#ddd">${human.labor}</span></span> <span>影響力: <span style="color:#ffd54f">+${human.influence || 0}</span></span>`
                     : `<span>労働: <span style="color:#ddd">${human.labor}</span></span>`;
 
                 slotDiv.innerHTML = `

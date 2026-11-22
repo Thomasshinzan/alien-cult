@@ -32,6 +32,37 @@ export function getCurrentStage() {
 export function generateHuman() {
     if (!humanData) return null;
 
+    // ステージ4以降かつ政財界データがある場合、40%の確率で政財界タイプを生成
+    if (
+        state.currentStageIndex >= 3 &&
+        humanData.eliteModifiers && humanData.eliteModifiers.length > 0 &&
+        humanData.eliteProfessions && humanData.eliteProfessions.length > 0 &&
+        Math.random() < 0.4
+    ) {
+        const mod = humanData.eliteModifiers[Math.floor(Math.random() * humanData.eliteModifiers.length)];
+        const prof = humanData.eliteProfessions[Math.floor(Math.random() * humanData.eliteProfessions.length)];
+
+        let calcLabor = Math.max(1, Math.min(20, prof.baseLabor + mod.laborMod));
+        let calcInfluence = Math.max(1, prof.baseInfluence + mod.influenceMod);
+        let calcHp = 100 + prof.hpMod + mod.hpMod;
+        let calcWillpower = Math.max(10, prof.baseWillpower + mod.willpowerMod);
+
+        return {
+            id: Date.now() + Math.random(),
+            type: 'elite',
+            name: mod.name + prof.name,
+            labor: calcLabor,
+            recruit: 0,
+            influence: calcInfluence,
+            willpower: calcWillpower,
+            brainwash: 0,
+            hp: calcHp,
+            maxHp: calcHp,
+            action: 'labor',
+            isBoss: false
+        };
+    }
+
     // ステージ2以降かつ勧誘データがある場合、40%の確率で勧誘タイプを生成
     if (
         state.currentStageIndex >= 1 &&
