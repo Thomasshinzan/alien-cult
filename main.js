@@ -94,7 +94,7 @@ btnEndTurn.onclick = async () => {
             hpChange = 30;
         } else if (human.action === 'labor') {
             hpChange = -15;
-            const baseDonation = Math.floor(human.labor * (human.brainwash / 5) * bonusMultiplier);
+            const baseDonation = Math.floor(human.labor * (human.brainwash / 10) * bonusMultiplier);
             if (baseDonation > 0) fundAmount = baseDonation;
         } else if (human.action === 'recruit') {
             hpChange = -15;
