@@ -30,33 +30,46 @@ export function getCurrentStage() {
 }
 
 export function generateHuman() {
-    if (!humanData) return null;
+    if (!humanData || !humanData.general || !humanData.elite) return null;
 
-    // 政財界タイプの出現率はステージごとに上昇（ステージ1: 0% → ステージ8以降: 100%）
-    const ELITE_RATES = [0, 0.10, 0.25, 0.40, 0.55, 0.70, 0.85, 1.0, 1.0, 1.0];
-    const eliteRate = ELITE_RATES[Math.min(state.currentStageIndex, ELITE_RATES.length - 1)];
-    if (
-        eliteRate > 0 &&
-        humanData.eliteModifiers && humanData.eliteModifiers.length > 0 &&
-        humanData.eliteProfessions && humanData.eliteProfessions.length > 0 &&
-        Math.random() < eliteRate
-    ) {
-        const mod = humanData.eliteModifiers[Math.floor(Math.random() * humanData.eliteModifiers.length)];
-        const prof = humanData.eliteProfessions[Math.floor(Math.random() * humanData.eliteProfessions.length)];
+    // レベル制プール: 職業のレベル <= 現在のステージ番号 のものだけが候補。
+    // 抽選の重みはレベル値そのもの（高レベルほど出やすい）。
+    // 一般人は低レベル中心・政財界人は高レベル中心の分布なので、
+    // ステージが進むほど自然に政財界人の比率が上がる。
+    const stageLevel = state.currentStageIndex + 1;
+    const candidates = [];
+    const addCandidates = (professions, type) => {
+        (professions || []).forEach(prof => {
+            const lv = prof.level || 1;
+            if (lv <= stageLevel) candidates.push({ prof, type, weight: lv });
+        });
+    };
+    addCandidates(humanData.general.professions, 'labor');
+    addCandidates(humanData.general.recruitProfessions, 'recruit');
+    addCandidates(humanData.elite.professions, 'elite');
+    if (candidates.length === 0) return null;
 
-        let calcLabor = Math.max(1, Math.min(20, prof.baseLabor + mod.laborMod));
-        let calcInfluence = Math.max(1, prof.baseInfluence + mod.influenceMod);
+    const totalWeight = candidates.reduce((sum, c) => sum + c.weight, 0);
+    let roll = Math.random() * totalWeight;
+    let picked = candidates[candidates.length - 1];
+    for (const c of candidates) {
+        roll -= c.weight;
+        if (roll < 0) { picked = c; break; }
+    }
+    const { prof, type } = picked;
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+    if (type === 'elite') {
+        const mod = pick(humanData.elite.modifiers);
         let calcHp = 100 + prof.hpMod + mod.hpMod;
-        let calcWillpower = Math.max(10, prof.baseWillpower + mod.willpowerMod);
-
         return {
             id: Date.now() + Math.random(),
             type: 'elite',
             name: mod.name + prof.name,
-            labor: calcLabor,
+            labor: Math.max(1, Math.min(20, prof.baseLabor + mod.laborMod)),
             recruit: 0,
-            influence: calcInfluence,
-            willpower: calcWillpower,
+            influence: Math.max(1, prof.baseInfluence + mod.influenceMod),
+            willpower: Math.max(10, prof.baseWillpower + mod.willpowerMod),
             brainwash: 0,
             hp: calcHp,
             maxHp: calcHp,
@@ -65,27 +78,16 @@ export function generateHuman() {
         };
     }
 
-    // ステージ2以降かつ勧誘データがある場合、40%の確率で勧誘タイプを生成
-    if (
-        state.currentStageIndex >= 1 &&
-        humanData.recruitModifiers && humanData.recruitModifiers.length > 0 &&
-        humanData.recruitProfessions && humanData.recruitProfessions.length > 0 &&
-        Math.random() < 0.4
-    ) {
-        const mod = humanData.recruitModifiers[Math.floor(Math.random() * humanData.recruitModifiers.length)];
-        const prof = humanData.recruitProfessions[Math.floor(Math.random() * humanData.recruitProfessions.length)];
-
-        let calcRecruit = Math.max(1, Math.min(10, prof.baseRecruit + mod.recruitMod));
+    if (type === 'recruit') {
+        const mod = pick(humanData.general.recruitModifiers);
         let calcHp = 100 + prof.hpMod + mod.hpMod;
-        let calcWillpower = Math.max(2, prof.baseWillpower + mod.willpowerMod);
-
         return {
             id: Date.now() + Math.random(),
             type: 'recruit',
             name: mod.name + prof.name,
-            recruit: calcRecruit,
+            recruit: Math.max(1, Math.min(10, prof.baseRecruit + mod.recruitMod)),
             labor: 0,
-            willpower: calcWillpower,
+            willpower: Math.max(2, prof.baseWillpower + mod.willpowerMod),
             brainwash: 0,
             hp: calcHp,
             maxHp: calcHp,
@@ -94,22 +96,17 @@ export function generateHuman() {
         };
     }
 
-    const mod = humanData.modifiers[Math.floor(Math.random() * humanData.modifiers.length)];
-    const prof = humanData.professions[Math.floor(Math.random() * humanData.professions.length)];
-    
-    let calcLabor = Math.max(1, Math.min(10, prof.baseLabor + mod.laborMod));
+    const mod = pick(humanData.general.modifiers);
     let calcHp = 100 + prof.hpMod + mod.hpMod;
-    let calcWillpower = Math.max(2, prof.baseWillpower + mod.willpowerMod);
-
     return {
         id: Date.now() + Math.random(),
         type: 'labor',
         name: mod.name + prof.name,
-        labor: calcLabor,
+        labor: Math.max(1, Math.min(10, prof.baseLabor + mod.laborMod)),
         recruit: 0,
-        willpower: calcWillpower,
+        willpower: Math.max(2, prof.baseWillpower + mod.willpowerMod),
         brainwash: 0,
-        hp: calcHp, 
+        hp: calcHp,
         maxHp: calcHp,
         action: 'labor',
         isBoss: false
@@ -121,7 +118,7 @@ export function trySpawnBoss() {
 
     const stage = getCurrentStage();
     if (state.cultStats.followers >= stage.bossCondition && stage.bossId) {
-        const bossData = humanData.uniques.find(u => u.id === stage.bossId);
+        const bossData = (humanData.bosses || []).find(u => u.id === stage.bossId);
         if (bossData) {
             state.bossSpawned = true;
             return {
