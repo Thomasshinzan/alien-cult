@@ -110,7 +110,9 @@ export function render() {
                 slotDiv.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <span class="human-name" style="${human.isBoss ? 'color: #ff3333;' : ''}">${human.name}</span>
-                        <button class="action-btn ${actionClass}" style="padding: 4px 16px; font-size: 0.9rem;" onclick="event.stopPropagation(); window.toggleAction(${human.id})">${actionName}</button>
+                        ${human.isBoss
+                            ? '<span style="padding: 4px 16px; font-size: 0.9rem; color: #888; border: 1px solid #555; border-radius: 4px;">行動不可</span>'
+                            : `<button class="action-btn ${actionClass}" style="padding: 4px 16px; font-size: 0.9rem;" onclick="event.stopPropagation(); window.toggleAction(${human.id})">${actionName}</button>`}
                     </div>
                     <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #aaa;">
                         <span>洗脳: <span style="font-weight: bold; color: #fff;">${human.brainwash}%</span></span>
