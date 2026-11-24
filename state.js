@@ -17,11 +17,21 @@ export const state = {
 export function computeGrowthRate() {
     let rate = 0.02 + (state.growthBonus || 0);
     state.humans.forEach(h => {
-        if (h.action === 'recruit' && h.hp > 0) {
+        if (h.action === 'recruit' && h.hp > 0 && !isActionLocked(h)) {
             rate += h.recruit * (h.brainwash / 100) * 0.002;
         }
     });
     return rate;
+}
+
+// 行動不可かどうか: ボス自身は常時不可。
+// 洗脳進行中のボスが抵抗スキル allyActionLock を持つ間は、他の全員も行動不可になる。
+export function isActionLocked(human) {
+    if (human.isBoss) return true;
+    return state.humans.some(h =>
+        h.isBoss && h.brainwash > 0 && h.brainwash < 100 &&
+        h.uniqueData?.resistSkill?.effect?.allyActionLock
+    );
 }
 
 export const MAX_SLOTS = 4;

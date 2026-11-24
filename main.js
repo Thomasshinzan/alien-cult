@@ -1,4 +1,4 @@
-import { state, saveGame, loadGame, computeGrowthRate } from './state.js';
+import { state, saveGame, loadGame, computeGrowthRate, isActionLocked } from './state.js';
 import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss } from './stage.js';
 import { showAlert, updateAlienPower, render } from './ui.js';
 import { initModals } from './modals.js';
@@ -27,7 +27,7 @@ async function initGame() {
 // 行動トグル（HTMLのonclickから呼び出し）
 window.toggleAction = function(id) {
     const human = state.humans.find(h => h.id === id);
-    if (human && human.isBoss) return; // ボスは行動不可（抵抗スキルを隠密で相殺できないように）
+    if (human && isActionLocked(human)) return; // 行動不可（ボス自身／ボスの抵抗スキルでロック中の仲間）
     if (human) {
         const workAction = human.type === 'recruit' ? 'recruit' : 'labor';
         if (human.action === 'rest') human.action = workAction;
@@ -86,7 +86,7 @@ btnEndTurn.onclick = async () => {
     const bonusMultiplier = (currentHideout && currentHideout.bonusMultiplier) ? currentHideout.bonusMultiplier : 1.0;
     
     state.humans.forEach(human => {
-        if (human.isBoss) return; // ボスは行動しない（HPも減らないので脱走もしない）
+        if (isActionLocked(human)) return; // 行動不可の人間は働かない（HPも減らないので脱走もしない）
         let hpChange = 0;
         let fundAmount = 0;
         let recruitAmount = 0;

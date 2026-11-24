@@ -1,4 +1,4 @@
-import { state, MAX_SLOTS, SAVE_KEY, computeGrowthRate } from './state.js';
+import { state, MAX_SLOTS, SAVE_KEY, computeGrowthRate, isActionLocked } from './state.js';
 
 // 大きな数を「1.2億」「345万」のように単位表示する
 export function formatNumber(n) {
@@ -110,7 +110,7 @@ export function render() {
                 slotDiv.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <span class="human-name" style="${human.isBoss ? 'color: #ff3333;' : ''}">${human.name}</span>
-                        ${human.isBoss
+                        ${isActionLocked(human)
                             ? '<span style="padding: 4px 16px; font-size: 0.9rem; color: #888; border: 1px solid #555; border-radius: 4px;">行動不可</span>'
                             : `<button class="action-btn ${actionClass}" style="padding: 4px 16px; font-size: 0.9rem;" onclick="event.stopPropagation(); window.toggleAction(${human.id})">${actionName}</button>`}
                     </div>
