@@ -119,6 +119,23 @@ btnEndTurn.onclick = async () => {
 
     state.cultStats.suspicion += baseSuspicionIncrease;
 
+    // ボスの抵抗スキル（洗脳が進行中＝洗脳度1〜99%のボスのみ発動）
+    state.humans.forEach(human => {
+        if (!human.isBoss || !human.uniqueData?.resistSkill) return;
+        if (human.brainwash <= 0 || human.brainwash >= 100) return;
+        const eff = human.uniqueData.resistSkill.effect || {};
+        if (eff.brainwashDecay) human.brainwash = Math.max(0, human.brainwash - eff.brainwashDecay);
+        if (eff.suspicion) state.cultStats.suspicion += eff.suspicion;
+        if (eff.mpDrain) state.alien.mp = Math.max(0, state.alien.mp - eff.mpDrain);
+        if (eff.allyBrainwashDecay) {
+            state.humans.forEach(other => {
+                if (other !== human && !other.isBoss && other.brainwash > 0 && other.brainwash < 100) {
+                    other.brainwash = Math.max(0, other.brainwash - eff.allyBrainwashDecay);
+                }
+            });
+        }
+    });
+
     // ランダムイベント処理（解放数に応じて発生確率が上昇：1個につき4%、最大25%）
     const eventChance = Math.min(0.25, state.collections.length * 0.04);
     if (Math.random() < eventChance) {

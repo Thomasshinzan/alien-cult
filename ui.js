@@ -118,6 +118,7 @@ export function render() {
                         ${roleStatHtml}
                         <span>体力: <span style="font-weight: bold; color: ${hpColor};">${human.hp}/${human.maxHp}${warningIcon}</span></span>
                     </div>
+                    ${human.isBoss && human.uniqueData?.resistSkill ? `<div style="font-size: 0.8rem; color: #ff8a80; margin-top: 4px;">🛡 抵抗スキル「${human.uniqueData.resistSkill.name}」: ${human.uniqueData.resistSkill.description}</div>` : ''}
                     <div class="popup-text" id="popup-${human.id}"></div>
                 `;
             } else {

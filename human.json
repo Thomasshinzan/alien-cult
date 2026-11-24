@@ -424,6 +424,13 @@
                 "effect": {
                     "suspicion": -50
                 }
+            },
+            "resistSkill": {
+                "name": "頑固一徹",
+                "description": "洗脳中、毎ターン洗脳度が3%戻る。",
+                "effect": {
+                    "brainwashDecay": 3
+                }
             }
         },
         {
@@ -442,6 +449,13 @@
                 "effect": {
                     "growthRate": 0.01
                 }
+            },
+            "resistSkill": {
+                "name": "世間の目",
+                "description": "洗脳中、毎ターン疑惑が+2される。世間が彼女の失踪に気づき始めている。",
+                "effect": {
+                    "suspicion": 2
+                }
             }
         },
         {
@@ -457,6 +471,13 @@
                 "cost": {},
                 "effect": {
                     "notImplemented": true
+                }
+            },
+            "resistSkill": {
+                "name": "組織の結束",
+                "description": "洗脳中、毎ターン他の未洗脳の人間の洗脳度が-4%される。部下たちが上司を守ろうとする。",
+                "effect": {
+                    "allyBrainwashDecay": 4
                 }
             }
         }
