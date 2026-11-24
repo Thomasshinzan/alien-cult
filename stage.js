@@ -32,12 +32,14 @@ export function getCurrentStage() {
 export function generateHuman() {
     if (!humanData) return null;
 
-    // ステージ4以降かつ政財界データがある場合、40%の確率で政財界タイプを生成
+    // 政財界タイプの出現率はステージごとに上昇（ステージ1: 0% → ステージ8以降: 100%）
+    const ELITE_RATES = [0, 0.10, 0.25, 0.40, 0.55, 0.70, 0.85, 1.0, 1.0, 1.0];
+    const eliteRate = ELITE_RATES[Math.min(state.currentStageIndex, ELITE_RATES.length - 1)];
     if (
-        state.currentStageIndex >= 3 &&
+        eliteRate > 0 &&
         humanData.eliteModifiers && humanData.eliteModifiers.length > 0 &&
         humanData.eliteProfessions && humanData.eliteProfessions.length > 0 &&
-        Math.random() < 0.4
+        Math.random() < eliteRate
     ) {
         const mod = humanData.eliteModifiers[Math.floor(Math.random() * humanData.eliteModifiers.length)];
         const prof = humanData.eliteProfessions[Math.floor(Math.random() * humanData.eliteProfessions.length)];

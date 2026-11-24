@@ -1,105 +1,417 @@
 {
     "modifiers": [
-        { "name": "孤独な", "laborMod": -1, "hpMod": -10, "willpowerMod": -5 },
-        { "name": "裕福な", "laborMod": 2, "hpMod": -5, "willpowerMod": 10 },
-        { "name": "悩める", "laborMod": 0, "hpMod": -5, "willpowerMod": -5 },
-        { "name": "野心的な", "laborMod": 3, "hpMod": 5, "willpowerMod": 8 },
-        { "name": "疲弊した", "laborMod": -2, "hpMod": -15, "willpowerMod": -8 },
-        { "name": "屈強な", "laborMod": 2, "hpMod": 15, "willpowerMod": 5 },
-        { "name": "平凡な", "laborMod": 0, "hpMod": 0, "willpowerMod": 0 },
-        { "name": "狂信的な", "laborMod": 1, "hpMod": 10, "willpowerMod": 15 }
+        {
+            "name": "孤独な",
+            "laborMod": -1,
+            "hpMod": -10,
+            "willpowerMod": -5
+        },
+        {
+            "name": "裕福な",
+            "laborMod": 2,
+            "hpMod": -5,
+            "willpowerMod": 10
+        },
+        {
+            "name": "悩める",
+            "laborMod": 0,
+            "hpMod": -5,
+            "willpowerMod": -5
+        },
+        {
+            "name": "野心的な",
+            "laborMod": 3,
+            "hpMod": 5,
+            "willpowerMod": 8
+        },
+        {
+            "name": "疲弊した",
+            "laborMod": -2,
+            "hpMod": -15,
+            "willpowerMod": -8
+        },
+        {
+            "name": "屈強な",
+            "laborMod": 2,
+            "hpMod": 15,
+            "willpowerMod": 5
+        },
+        {
+            "name": "平凡な",
+            "laborMod": 0,
+            "hpMod": 0,
+            "willpowerMod": 0
+        },
+        {
+            "name": "狂信的な",
+            "laborMod": 1,
+            "hpMod": 10,
+            "willpowerMod": 15
+        }
     ],
     "professions": [
-        { "name": "学生", "baseLabor": 2, "hpMod": 5, "baseWillpower": 15 },
-        { "name": "主婦", "baseLabor": 3, "hpMod": 0, "baseWillpower": 20 },
-        { "name": "会社員", "baseLabor": 5, "hpMod": -5, "baseWillpower": 25 },
-        { "name": "経営者", "baseLabor": 8, "hpMod": -10, "baseWillpower": 35 },
-        { "name": "フリーター", "baseLabor": 2, "hpMod": 5, "baseWillpower": 15 },
-        { "name": "大学教授", "baseLabor": 4, "hpMod": -10, "baseWillpower": 30 },
-        { "name": "アスリート", "baseLabor": 6, "hpMod": 15, "baseWillpower": 25 },
-        { "name": "無職", "baseLabor": 1, "hpMod": -5, "baseWillpower": 10 }
+        {
+            "name": "学生",
+            "baseLabor": 2,
+            "hpMod": 5,
+            "baseWillpower": 15
+        },
+        {
+            "name": "主婦",
+            "baseLabor": 3,
+            "hpMod": 0,
+            "baseWillpower": 20
+        },
+        {
+            "name": "会社員",
+            "baseLabor": 5,
+            "hpMod": -5,
+            "baseWillpower": 25
+        },
+        {
+            "name": "経営者",
+            "baseLabor": 8,
+            "hpMod": -10,
+            "baseWillpower": 35
+        },
+        {
+            "name": "フリーター",
+            "baseLabor": 2,
+            "hpMod": 5,
+            "baseWillpower": 15
+        },
+        {
+            "name": "大学教授",
+            "baseLabor": 4,
+            "hpMod": -10,
+            "baseWillpower": 30
+        },
+        {
+            "name": "アスリート",
+            "baseLabor": 6,
+            "hpMod": 15,
+            "baseWillpower": 25
+        },
+        {
+            "name": "無職",
+            "baseLabor": 1,
+            "hpMod": -5,
+            "baseWillpower": 10
+        }
     ],
     "recruitModifiers": [
-        { "name": "美貌の", "recruitMod": 1, "hpMod": -5, "willpowerMod": 5 },
-        { "name": "口のうまい", "recruitMod": 2, "hpMod": 0, "willpowerMod": 8 },
-        { "name": "顔が広い", "recruitMod": 1, "hpMod": 5, "willpowerMod": 0 },
-        { "name": "カリスマ的な", "recruitMod": 3, "hpMod": 0, "willpowerMod": 12 },
-        { "name": "人当たりの良い", "recruitMod": 0, "hpMod": 5, "willpowerMod": -5 },
-        { "name": "話好きな", "recruitMod": 1, "hpMod": 5, "willpowerMod": -2 },
-        { "name": "熱血な", "recruitMod": 2, "hpMod": 10, "willpowerMod": 5 },
-        { "name": "社交的な", "recruitMod": 1, "hpMod": 0, "willpowerMod": 2 }
+        {
+            "name": "美貌の",
+            "recruitMod": 1,
+            "hpMod": -5,
+            "willpowerMod": 5
+        },
+        {
+            "name": "口のうまい",
+            "recruitMod": 2,
+            "hpMod": 0,
+            "willpowerMod": 8
+        },
+        {
+            "name": "顔が広い",
+            "recruitMod": 1,
+            "hpMod": 5,
+            "willpowerMod": 0
+        },
+        {
+            "name": "カリスマ的な",
+            "recruitMod": 3,
+            "hpMod": 0,
+            "willpowerMod": 12
+        },
+        {
+            "name": "人当たりの良い",
+            "recruitMod": 0,
+            "hpMod": 5,
+            "willpowerMod": -5
+        },
+        {
+            "name": "話好きな",
+            "recruitMod": 1,
+            "hpMod": 5,
+            "willpowerMod": -2
+        },
+        {
+            "name": "熱血な",
+            "recruitMod": 2,
+            "hpMod": 10,
+            "willpowerMod": 5
+        },
+        {
+            "name": "社交的な",
+            "recruitMod": 1,
+            "hpMod": 0,
+            "willpowerMod": 2
+        }
     ],
     "recruitProfessions": [
-        { "name": "会社員", "baseRecruit": 2, "hpMod": -5, "baseWillpower": 20 },
-        { "name": "営業マン", "baseRecruit": 3, "hpMod": 5, "baseWillpower": 25 },
-        { "name": "主婦", "baseRecruit": 2, "hpMod": 0, "baseWillpower": 18 },
-        { "name": "美容師", "baseRecruit": 3, "hpMod": 0, "baseWillpower": 22 },
-        { "name": "インフルエンサー", "baseRecruit": 4, "hpMod": -10, "baseWillpower": 30 },
-        { "name": "店員", "baseRecruit": 2, "hpMod": 0, "baseWillpower": 15 },
-        { "name": "バーテンダー", "baseRecruit": 3, "hpMod": 10, "baseWillpower": 22 },
-        { "name": "塾講師", "baseRecruit": 3, "hpMod": 5, "baseWillpower": 28 }
+        {
+            "name": "会社員",
+            "baseRecruit": 2,
+            "hpMod": -5,
+            "baseWillpower": 20
+        },
+        {
+            "name": "営業マン",
+            "baseRecruit": 3,
+            "hpMod": 5,
+            "baseWillpower": 25
+        },
+        {
+            "name": "主婦",
+            "baseRecruit": 2,
+            "hpMod": 0,
+            "baseWillpower": 18
+        },
+        {
+            "name": "美容師",
+            "baseRecruit": 3,
+            "hpMod": 0,
+            "baseWillpower": 22
+        },
+        {
+            "name": "インフルエンサー",
+            "baseRecruit": 4,
+            "hpMod": -10,
+            "baseWillpower": 30
+        },
+        {
+            "name": "店員",
+            "baseRecruit": 2,
+            "hpMod": 0,
+            "baseWillpower": 15
+        },
+        {
+            "name": "バーテンダー",
+            "baseRecruit": 3,
+            "hpMod": 10,
+            "baseWillpower": 22
+        },
+        {
+            "name": "塾講師",
+            "baseRecruit": 3,
+            "hpMod": 5,
+            "baseWillpower": 28
+        }
     ],
     "eliteModifiers": [
-        { "name": "世襲の", "laborMod": 1, "hpMod": 5, "willpowerMod": -10, "influenceMod": 3 },
-        { "name": "叩き上げの", "laborMod": 2, "hpMod": 10, "willpowerMod": 10, "influenceMod": 0 },
-        { "name": "清廉潔白な", "laborMod": 0, "hpMod": 0, "willpowerMod": 25, "influenceMod": 2 },
-        { "name": "腐敗した", "laborMod": 1, "hpMod": -5, "willpowerMod": -15, "influenceMod": 1 },
-        { "name": "狡猾な", "laborMod": 1, "hpMod": 0, "willpowerMod": 15, "influenceMod": 2 },
-        { "name": "大物の", "laborMod": 3, "hpMod": 5, "willpowerMod": 10, "influenceMod": 5 },
-        { "name": "黒幕の", "laborMod": 2, "hpMod": 0, "willpowerMod": 20, "influenceMod": 4 },
-        { "name": "野心家の", "laborMod": 2, "hpMod": 5, "willpowerMod": 5, "influenceMod": 3 }
+        {
+            "name": "世襲の",
+            "laborMod": 1,
+            "hpMod": 5,
+            "willpowerMod": -10,
+            "influenceMod": 3
+        },
+        {
+            "name": "叩き上げの",
+            "laborMod": 2,
+            "hpMod": 10,
+            "willpowerMod": 10,
+            "influenceMod": 0
+        },
+        {
+            "name": "清廉潔白な",
+            "laborMod": 0,
+            "hpMod": 0,
+            "willpowerMod": 25,
+            "influenceMod": 2
+        },
+        {
+            "name": "腐敗した",
+            "laborMod": 1,
+            "hpMod": -5,
+            "willpowerMod": -15,
+            "influenceMod": 1
+        },
+        {
+            "name": "狡猾な",
+            "laborMod": 1,
+            "hpMod": 0,
+            "willpowerMod": 15,
+            "influenceMod": 2
+        },
+        {
+            "name": "大物の",
+            "laborMod": 3,
+            "hpMod": 5,
+            "willpowerMod": 10,
+            "influenceMod": 5
+        },
+        {
+            "name": "黒幕の",
+            "laborMod": 2,
+            "hpMod": 0,
+            "willpowerMod": 20,
+            "influenceMod": 4
+        },
+        {
+            "name": "野心家の",
+            "laborMod": 2,
+            "hpMod": 5,
+            "willpowerMod": 5,
+            "influenceMod": 3
+        }
     ],
     "eliteProfessions": [
-        { "name": "IT系企業CEO", "baseLabor": 12, "hpMod": -5, "baseWillpower": 60, "baseInfluence": 10 },
-        { "name": "大手銀行頭取", "baseLabor": 14, "hpMod": -10, "baseWillpower": 70, "baseInfluence": 12 },
-        { "name": "総合商社会長", "baseLabor": 13, "hpMod": 0, "baseWillpower": 65, "baseInfluence": 11 },
-        { "name": "不動産開発社長", "baseLabor": 12, "hpMod": 5, "baseWillpower": 55, "baseInfluence": 9 },
-        { "name": "投資ファンド代表", "baseLabor": 15, "hpMod": -5, "baseWillpower": 75, "baseInfluence": 10 },
-        { "name": "メディアグループ会長", "baseLabor": 11, "hpMod": 0, "baseWillpower": 60, "baseInfluence": 14 },
-        { "name": "製薬会社会長", "baseLabor": 12, "hpMod": 0, "baseWillpower": 70, "baseInfluence": 9 },
-        { "name": "経済団体連合会長", "baseLabor": 10, "hpMod": 5, "baseWillpower": 65, "baseInfluence": 15 },
-        { "name": "財務省官僚", "baseLabor": 9, "hpMod": 0, "baseWillpower": 80, "baseInfluence": 12 },
-        { "name": "経済産業省官僚", "baseLabor": 9, "hpMod": 0, "baseWillpower": 75, "baseInfluence": 11 },
-        { "name": "国会議員", "baseLabor": 8, "hpMod": 5, "baseWillpower": 60, "baseInfluence": 15 },
-        { "name": "与党幹事長", "baseLabor": 9, "hpMod": 0, "baseWillpower": 85, "baseInfluence": 18 },
-        { "name": "大臣秘書官", "baseLabor": 8, "hpMod": -5, "baseWillpower": 55, "baseInfluence": 10 },
-        { "name": "警察庁幹部", "baseLabor": 8, "hpMod": 10, "baseWillpower": 90, "baseInfluence": 9 },
-        { "name": "防衛省官僚", "baseLabor": 8, "hpMod": 5, "baseWillpower": 85, "baseInfluence": 10 },
-        { "name": "最高裁判所判事", "baseLabor": 7, "hpMod": 0, "baseWillpower": 95, "baseInfluence": 11 }
+        {
+            "name": "IT系企業CEO",
+            "baseLabor": 12,
+            "hpMod": -5,
+            "baseWillpower": 60,
+            "baseInfluence": 10
+        },
+        {
+            "name": "大手銀行頭取",
+            "baseLabor": 14,
+            "hpMod": -10,
+            "baseWillpower": 70,
+            "baseInfluence": 12
+        },
+        {
+            "name": "総合商社会長",
+            "baseLabor": 13,
+            "hpMod": 0,
+            "baseWillpower": 65,
+            "baseInfluence": 11
+        },
+        {
+            "name": "不動産開発社長",
+            "baseLabor": 12,
+            "hpMod": 5,
+            "baseWillpower": 55,
+            "baseInfluence": 9
+        },
+        {
+            "name": "投資ファンド代表",
+            "baseLabor": 15,
+            "hpMod": -5,
+            "baseWillpower": 75,
+            "baseInfluence": 10
+        },
+        {
+            "name": "メディアグループ会長",
+            "baseLabor": 11,
+            "hpMod": 0,
+            "baseWillpower": 60,
+            "baseInfluence": 14
+        },
+        {
+            "name": "製薬会社会長",
+            "baseLabor": 12,
+            "hpMod": 0,
+            "baseWillpower": 70,
+            "baseInfluence": 9
+        },
+        {
+            "name": "経済団体連合会長",
+            "baseLabor": 10,
+            "hpMod": 5,
+            "baseWillpower": 65,
+            "baseInfluence": 15
+        },
+        {
+            "name": "財務省官僚",
+            "baseLabor": 9,
+            "hpMod": 0,
+            "baseWillpower": 80,
+            "baseInfluence": 12
+        },
+        {
+            "name": "経済産業省官僚",
+            "baseLabor": 9,
+            "hpMod": 0,
+            "baseWillpower": 75,
+            "baseInfluence": 11
+        },
+        {
+            "name": "国会議員",
+            "baseLabor": 8,
+            "hpMod": 5,
+            "baseWillpower": 60,
+            "baseInfluence": 15
+        },
+        {
+            "name": "与党幹事長",
+            "baseLabor": 9,
+            "hpMod": 0,
+            "baseWillpower": 85,
+            "baseInfluence": 18
+        },
+        {
+            "name": "大臣秘書官",
+            "baseLabor": 8,
+            "hpMod": -5,
+            "baseWillpower": 55,
+            "baseInfluence": 10
+        },
+        {
+            "name": "警察庁幹部",
+            "baseLabor": 8,
+            "hpMod": 10,
+            "baseWillpower": 90,
+            "baseInfluence": 9
+        },
+        {
+            "name": "防衛省官僚",
+            "baseLabor": 8,
+            "hpMod": 5,
+            "baseWillpower": 85,
+            "baseInfluence": 10
+        },
+        {
+            "name": "最高裁判所判事",
+            "baseLabor": 7,
+            "hpMod": 0,
+            "baseWillpower": 95,
+            "baseInfluence": 11
+        }
     ],
     "uniques": [
         {
             "id": "unique_001",
             "title": "町長",
-            "name": "強欲な町長",
+            "name": "黒川源太郎",
             "labor": 15,
             "hp": 200,
             "willpower": 40,
             "skill": {
                 "name": "権力者の圧力",
                 "description": "資金100を消費して、警戒度を50下げる。",
-                "cost": { "funds": 100 },
-                "effect": { "suspicion": -50 }
+                "cost": {
+                    "funds": 100
+                },
+                "effect": {
+                    "suspicion": -50
+                }
             }
         },
         {
             "id": "unique_002",
             "title": "市長の娘",
-            "name": "市長の娘",
+            "name": "高嶺美咲",
             "labor": 20,
             "hp": 300,
             "willpower": 80,
             "skill": {
                 "name": "広告塔",
                 "description": "精神力(MP)を500消費して、信者の成長率を永続的に+1%する。",
-                "cost": { "mp": 500 },
-                "effect": { "growthRate": 0.01 }
+                "cost": {
+                    "mp": 500
+                },
+                "effect": {
+                    "growthRate": 0.01
+                }
             }
         },
         {
             "id": "unique_003",
             "title": "市長",
-            "name": "市長",
+            "name": "高嶺誠一郎",
             "labor": 30,
             "hp": 400,
             "willpower": 250,
@@ -107,7 +419,9 @@
                 "name": "市政変革",
                 "description": "政治システムに影響を与える。（※今後のアップデートで実装予定）",
                 "cost": {},
-                "effect": { "notImplemented": true }
+                "effect": {
+                    "notImplemented": true
+                }
             }
         }
     ]
