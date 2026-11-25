@@ -107,10 +107,19 @@ function renderExecutives() {
                     await showAlert('発動失敗', '信者が足りません！');
                     return;
                 }
+                if (exec.skill.cost.followersPercent && state.cultStats.followers < 1) {
+                    await showAlert('発動失敗', '信者が足りません！');
+                    return;
+                }
 
                 if (exec.skill.cost.funds) state.cultStats.funds -= exec.skill.cost.funds;
                 if (exec.skill.cost.mp) state.alien.mp -= exec.skill.cost.mp;
                 if (exec.skill.cost.followers) state.cultStats.followers = Math.max(0, state.cultStats.followers - exec.skill.cost.followers);
+                if (exec.skill.cost.followersPercent) {
+                    const pctCost = Math.max(1, Math.floor(state.cultStats.followers * exec.skill.cost.followersPercent));
+                    state.cultStats.followers = Math.max(0, state.cultStats.followers - pctCost);
+                    updateAlienPower();
+                }
 
                 if (exec.skill.effect.suspicion) {
                     state.cultStats.suspicion = Math.max(0, state.cultStats.suspicion + exec.skill.effect.suspicion);

@@ -492,9 +492,9 @@
             "willpower": 500,
             "skill": {
                 "name": "県政掌握",
-                "description": "信者数を10消費して、資金を+10000する。",
+                "description": "信者数の5%を消費して、資金を+10000する。",
                 "cost": {
-                    "followers": 10
+                    "followersPercent": 0.05
                 },
                 "effect": {
                     "funds": 10000

@@ -5,6 +5,13 @@ export let stageData = [];
 export let eventData = [];
 export let hideoutData = [];
 
+// ステージ成長倍率（案C）: 信者がステージごとに×10で増え、MP回復が約×3.16で伸びるのに合わせた指数倍率。
+// 意思力（出現時）と労働収入が共有する。S1〜S3は×1で序盤の感触は従来通り。ボスには適用しない。
+export const STAGE_GROWTH_MULTIPLIERS = [1, 1, 1, 3, 10, 31, 99, 313, 988, 2795];
+export function getStageGrowthMultiplier() {
+    return STAGE_GROWTH_MULTIPLIERS[Math.min(state.currentStageIndex, STAGE_GROWTH_MULTIPLIERS.length - 1)];
+}
+
 export async function loadData() {
     const [humanRes, stageRes, eventRes, hideoutRes] = await Promise.all([
         fetch('human.json', { cache: 'no-cache' }),
@@ -37,11 +44,7 @@ export function generateHuman() {
     // 一般人は低レベル中心・政財界人は高レベル中心の分布なので、
     // ステージが進むほど自然に政財界人の比率が上がる。
     const stageLevel = state.currentStageIndex + 1;
-    // 意思力のステージ倍率（案C）: MP回復は信者の平方根で伸び、ステージごとに約×3.16になる。
-    // 意思力も同じペースで伸ばすことで「エリート1人＝回復約5ターン分」が全ステージで一定になる。
-    // S1〜S3は×1で序盤の感触は従来通り。ボスの意思力には適用しない。
-    const WILLPOWER_MULTIPLIERS = [1, 1, 1, 3, 10, 31, 99, 313, 988, 2795];
-    const wpMult = WILLPOWER_MULTIPLIERS[Math.min(stageLevel - 1, WILLPOWER_MULTIPLIERS.length - 1)];
+    const wpMult = getStageGrowthMultiplier();
     const candidates = [];
     const addCandidates = (professions, type) => {
         (professions || []).forEach(prof => {
