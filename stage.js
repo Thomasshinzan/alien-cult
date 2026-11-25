@@ -37,6 +37,11 @@ export function generateHuman() {
     // 一般人は低レベル中心・政財界人は高レベル中心の分布なので、
     // ステージが進むほど自然に政財界人の比率が上がる。
     const stageLevel = state.currentStageIndex + 1;
+    // 意思力のステージ倍率（案C）: MP回復は信者の平方根で伸び、ステージごとに約×3.16になる。
+    // 意思力も同じペースで伸ばすことで「エリート1人＝回復約5ターン分」が全ステージで一定になる。
+    // S1〜S3は×1で序盤の感触は従来通り。ボスの意思力には適用しない。
+    const WILLPOWER_MULTIPLIERS = [1, 1, 1, 3, 10, 31, 99, 313, 988, 2795];
+    const wpMult = WILLPOWER_MULTIPLIERS[Math.min(stageLevel - 1, WILLPOWER_MULTIPLIERS.length - 1)];
     const candidates = [];
     const addCandidates = (professions, type) => {
         (professions || []).forEach(prof => {
@@ -69,7 +74,7 @@ export function generateHuman() {
             labor: Math.max(1, Math.min(20, prof.baseLabor + mod.laborMod)),
             recruit: 0,
             influence: Math.max(1, prof.baseInfluence + mod.influenceMod),
-            willpower: Math.max(10, prof.baseWillpower + mod.willpowerMod),
+            willpower: Math.round(Math.max(10, prof.baseWillpower + mod.willpowerMod) * wpMult),
             brainwash: 0,
             hp: calcHp,
             maxHp: calcHp,
@@ -87,7 +92,7 @@ export function generateHuman() {
             name: mod.name + prof.name,
             recruit: Math.max(1, Math.min(10, prof.baseRecruit + mod.recruitMod)),
             labor: 0,
-            willpower: Math.max(2, prof.baseWillpower + mod.willpowerMod),
+            willpower: Math.round(Math.max(2, prof.baseWillpower + mod.willpowerMod) * wpMult),
             brainwash: 0,
             hp: calcHp,
             maxHp: calcHp,
@@ -104,7 +109,7 @@ export function generateHuman() {
         name: mod.name + prof.name,
         labor: Math.max(1, Math.min(10, prof.baseLabor + mod.laborMod)),
         recruit: 0,
-        willpower: Math.max(2, prof.baseWillpower + mod.willpowerMod),
+        willpower: Math.round(Math.max(2, prof.baseWillpower + mod.willpowerMod) * wpMult),
         brainwash: 0,
         hp: calcHp,
         maxHp: calcHp,
