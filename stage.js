@@ -7,10 +7,10 @@ export let hideoutData = [];
 
 export async function loadData() {
     const [humanRes, stageRes, eventRes, hideoutRes] = await Promise.all([
-        fetch('human.json'),
-        fetch('stage.json'),
-        fetch('event.json'),
-        fetch('hideout.json')
+        fetch('human.json', { cache: 'no-cache' }),
+        fetch('stage.json', { cache: 'no-cache' }),
+        fetch('event.json', { cache: 'no-cache' }),
+        fetch('hideout.json', { cache: 'no-cache' })
     ]);
     
     if (!humanRes.ok) throw new Error("human.json が見つかりません。");
