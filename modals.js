@@ -103,12 +103,20 @@ function renderExecutives() {
                     await showAlert('発動失敗', '精神力(MP)が足りません！');
                     return;
                 }
-                
+                if (exec.skill.cost.followers && state.cultStats.followers < exec.skill.cost.followers) {
+                    await showAlert('発動失敗', '信者が足りません！');
+                    return;
+                }
+
                 if (exec.skill.cost.funds) state.cultStats.funds -= exec.skill.cost.funds;
                 if (exec.skill.cost.mp) state.alien.mp -= exec.skill.cost.mp;
+                if (exec.skill.cost.followers) state.cultStats.followers = Math.max(0, state.cultStats.followers - exec.skill.cost.followers);
 
                 if (exec.skill.effect.suspicion) {
                     state.cultStats.suspicion = Math.max(0, state.cultStats.suspicion + exec.skill.effect.suspicion);
+                }
+                if (exec.skill.effect.suspicionSet !== undefined) {
+                    state.cultStats.suspicion = exec.skill.effect.suspicionSet;
                 }
                 if (exec.skill.effect.followers) {
                     state.cultStats.followers += exec.skill.effect.followers;
@@ -123,7 +131,11 @@ function renderExecutives() {
                 
                 render();
                 saveGame();
-                await showAlert('発動成功', `${exec.name}がスキル「${exec.skill.name}」を発動しました！`);
+                if (exec.skill.effect.ending) {
+                    await showAlert('【地球征服完了】', `${exec.name}がエイリアンに地球人類の支配権を認めました。\nここに地球征服は完了し、エイリアンは地球連合の永久総統となったのです。`);
+                } else {
+                    await showAlert('発動成功', `${exec.name}がスキル「${exec.skill.name}」を発動しました！`);
+                }
             }
         };
         executivesListEl.appendChild(card);

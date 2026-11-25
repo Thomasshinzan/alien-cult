@@ -467,10 +467,12 @@
             "willpower": 250,
             "skill": {
                 "name": "市政変革",
-                "description": "政治システムに影響を与える。（※今後のアップデートで実装予定）",
-                "cost": {},
+                "description": "資金1000を消費して、警戒度を0にする。",
+                "cost": {
+                    "funds": 1000
+                },
                 "effect": {
-                    "notImplemented": true
+                    "suspicionSet": 0
                 }
             },
             "resistSkill": {
@@ -478,6 +480,181 @@
                 "description": "洗脳中、毎ターン他の未洗脳の人間の洗脳度が-4%される。部下たちが上司を守ろうとする。",
                 "effect": {
                     "allyBrainwashDecay": 4
+                }
+            }
+        },
+        {
+            "id": "unique_004",
+            "title": "知事",
+            "name": "大河内厳",
+            "labor": 40,
+            "hp": 600,
+            "willpower": 500,
+            "skill": {
+                "name": "県政掌握",
+                "description": "信者数を10消費して、資金を+10000する。",
+                "cost": {
+                    "followers": 10
+                },
+                "effect": {
+                    "funds": 10000
+                }
+            },
+            "resistSkill": {
+                "name": "県政の壁",
+                "description": "洗脳中、人間の一人を行動不可にする。",
+                "effect": {
+                    "allyActionLockOne": true
+                }
+            }
+        },
+        {
+            "id": "unique_005",
+            "title": "内閣総理大臣",
+            "name": "藤堂静香",
+            "labor": 50,
+            "hp": 800,
+            "willpower": 2200,
+            "skill": {
+                "name": "国家運営",
+                "description": "資金40000を消費して、信者の成長率を永続的に+1.5%する。",
+                "cost": {
+                    "funds": 40000
+                },
+                "effect": {
+                    "growthRate": 0.015
+                }
+            },
+            "resistSkill": {
+                "name": "国政の重圧",
+                "description": "洗脳を始めたとき、人間のひとりの体力を0にする。",
+                "effect": {
+                    "allyHpZeroOnce": true
+                }
+            }
+        },
+        {
+            "id": "unique_006",
+            "title": "大統領首席補佐官",
+            "name": "マイケル・カーター",
+            "labor": 60,
+            "hp": 1000,
+            "willpower": 7000,
+            "skill": {
+                "name": "外交工作",
+                "description": "資金5000を消費して、警戒度を60下げる。",
+                "cost": {
+                    "funds": 5000
+                },
+                "effect": {
+                    "suspicion": -60
+                }
+            },
+            "resistSkill": {
+                "name": "外交の駆け引き",
+                "description": "洗脳中、毎ターン精神力(MP)が2000奪われる。",
+                "effect": {
+                    "mpDrain": 2000
+                }
+            }
+        },
+        {
+            "id": "unique_007",
+            "title": "国際マフィア首領",
+            "name": "ヴィクトル・ドラグノフ",
+            "labor": 70,
+            "hp": 1300,
+            "willpower": 22000,
+            "skill": {
+                "name": "裏社会の盟約",
+                "description": "精神力(MP)10000を消費して、資金50000を獲得する。",
+                "cost": {
+                    "mp": 10000
+                },
+                "effect": {
+                    "funds": 50000
+                }
+            },
+            "resistSkill": {
+                "name": "裏社会の報復",
+                "description": "洗脳中、毎ターン他の未洗脳の人間の洗脳度が-6%される。部下たちが首領を守ろうとする。",
+                "effect": {
+                    "allyBrainwashDecay": 6
+                }
+            }
+        },
+        {
+            "id": "unique_008",
+            "title": "国連事務総長",
+            "name": "エレナ・ヴァスケス",
+            "labor": 80,
+            "hp": 1600,
+            "willpower": 70000,
+            "skill": {
+                "name": "国際世論操作",
+                "description": "資金80000を消費して、信者の成長率を永続的に+2%する。",
+                "cost": {
+                    "funds": 80000
+                },
+                "effect": {
+                    "growthRate": 0.02
+                }
+            },
+            "resistSkill": {
+                "name": "国際世論",
+                "description": "洗脳中、毎ターン疑惑が+4される。事務総長の失踪は国際ニュースになる。",
+                "effect": {
+                    "suspicion": 4
+                }
+            }
+        },
+        {
+            "id": "unique_009",
+            "title": "地球連合初代総統",
+            "name": "レオンハルト・ヴァイス",
+            "labor": 90,
+            "hp": 2000,
+            "willpower": 220000,
+            "skill": {
+                "name": "建国宣言",
+                "description": "資金150000を消費して、信者の成長率を永続的に+2.5%する。",
+                "cost": {
+                    "funds": 150000
+                },
+                "effect": {
+                    "growthRate": 0.025
+                }
+            },
+            "resistSkill": {
+                "name": "建国のカリスマ",
+                "description": "洗脳中、毎ターン洗脳度が6%戻る。初代総統のカリスマが洗脳を跳ね返す。",
+                "effect": {
+                    "brainwashDecay": 6
+                }
+            }
+        },
+        {
+            "id": "unique_010",
+            "title": "地球連合総統",
+            "name": "アウグスト・カイゼル",
+            "labor": 100,
+            "hp": 2500,
+            "willpower": 620000,
+            "skill": {
+                "name": "権力移譲",
+                "description": "エイリアンに地球人類の支配権を認める",
+                "cost": {
+                    "mp": 10000
+                },
+                "effect": {
+                    "ending": true
+                }
+            },
+            "resistSkill": {
+                "name": "最後の抵抗",
+                "description": "すべての人間が行動不可になる",
+                "effect": {
+                    "allyActionLock": true
                 }
             }
         }

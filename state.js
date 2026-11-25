@@ -25,13 +25,22 @@ export function computeGrowthRate() {
 }
 
 // 行動不可かどうか: ボス自身は常時不可。
-// 洗脳進行中のボスが抵抗スキル allyActionLock を持つ間は、他の全員も行動不可になる。
+// 洗脳進行中のボスの抵抗スキルでロックされる場合もある:
+//   allyActionLock    … 他の全員が行動不可
+//   allyActionLockOne … 最も洗脳が進んでいる仲間1人だけ行動不可
 export function isActionLocked(human) {
     if (human.isBoss) return true;
-    return state.humans.some(h =>
-        h.isBoss && h.brainwash > 0 && h.brainwash < 100 &&
-        h.uniqueData?.resistSkill?.effect?.allyActionLock
-    );
+    const activeEffects = state.humans
+        .filter(h => h.isBoss && h.brainwash > 0 && h.brainwash < 100)
+        .map(h => h.uniqueData?.resistSkill?.effect || {});
+    if (activeEffects.some(e => e.allyActionLock)) return true;
+    if (activeEffects.some(e => e.allyActionLockOne)) {
+        const targets = state.humans.filter(h => !h.isBoss && h.brainwash > 0 && h.brainwash < 100);
+        if (targets.length === 0) return false;
+        const target = targets.reduce((a, b) => (b.brainwash > a.brainwash ? b : a));
+        return human.id === target.id;
+    }
+    return false;
 }
 
 export const MAX_SLOTS = 4;

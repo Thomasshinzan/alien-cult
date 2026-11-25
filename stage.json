@@ -16,37 +16,37 @@
     },
     {
         "bossCondition": 10000,
-        "bossId": "",
+        "bossId": "unique_004",
         "name": "ステージ4：政治の支配"
     },
     {
         "bossCondition": 100000,
-        "bossId": "",
+        "bossId": "unique_005",
         "name": "ステージ5：国家中枢"
     },
     {
         "bossCondition": 1000000,
-        "bossId": "",
+        "bossId": "unique_006",
         "name": "ステージ6：大国進出"
     },
     {
         "bossCondition": 10000000,
-        "bossId": "",
+        "bossId": "unique_007",
         "name": "ステージ7：世界の裏社会"
     },
     {
         "bossCondition": 100000000,
-        "bossId": "",
+        "bossId": "unique_008",
         "name": "ステージ8：国際機関の掌握"
     },
     {
         "bossCondition": 1000000000,
-        "bossId": "",
+        "bossId": "unique_009",
         "name": "ステージ9：地球連合建国"
     },
     {
         "bossCondition": 8000000000,
-        "bossId": "",
+        "bossId": "unique_010",
         "name": "ステージ10：永久総統就任"
     }
 ]

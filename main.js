@@ -136,6 +136,14 @@ btnEndTurn.onclick = async () => {
                 }
             });
         }
+        if (eff.allyHpZeroOnce && !human.resistFired) {
+            const targets = state.humans.filter(o => o !== human && !o.isBoss);
+            if (targets.length > 0) {
+                const target = targets.reduce((a, b) => (b.hp < a.hp ? b : a));
+                target.hp = 0;
+                human.resistFired = true;
+            }
+        }
     });
 
     // ランダムイベント処理（解放数に応じて発生確率が上昇：1個につき4%、最大25%）
