@@ -117,6 +117,9 @@ function renderExecutives() {
                 if (exec.skill.effect.growthRate) {
                     state.growthBonus = (state.growthBonus || 0) + exec.skill.effect.growthRate;
                 }
+                if (exec.skill.effect.funds) {
+                    state.cultStats.funds += exec.skill.effect.funds;
+                }
                 
                 render();
                 saveGame();
