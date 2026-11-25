@@ -41,7 +41,7 @@ export function initModals() {
     // スロット・拠点拡張
     btnExpandHideout.onclick = async () => {
         if (state.unlockedSlots < MAX_SLOTS) {
-            const cost = state.unlockedSlots * 500;
+            const cost = state.unlockedSlots * 50;
             if (state.cultStats.funds >= cost) {
                 state.cultStats.funds -= cost;
                 state.unlockedSlots++;
@@ -149,7 +149,7 @@ function renderHideout() {
     hideoutDescEl.innerText = `${currentHideout.desc}\n【拠点ボーナス】労働・勧誘の成果 ×${mult.toFixed(1)}`;
 
     if (state.unlockedSlots < MAX_SLOTS) {
-        const cost = state.unlockedSlots * 500;
+        const cost = state.unlockedSlots * 50;
         btnExpandHideout.innerText = `スロット拡張 (コスト: ${cost}資金)`;
         btnExpandHideout.disabled = state.cultStats.funds < cost;
         btnExpandHideout.style.background = '#0066cc';
