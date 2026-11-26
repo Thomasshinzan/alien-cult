@@ -1,5 +1,5 @@
 import { state, MAX_SLOTS, saveGame, resetGame } from './state.js';
-import { eventData, hideoutData } from './stage.js';
+import { eventData, hideoutData, scaleFunds } from './stage.js';
 import { showAlert, updateAlienPower, render } from './ui.js';
 
 // 幹部モーダルDOM
@@ -95,11 +95,22 @@ function renderExecutives() {
                     return;
                 }
 
-                if (exec.skill.cost.funds && state.cultStats.funds < exec.skill.cost.funds) {
+                // コストは比率制: fundsPercent=所持資金の割合 / mpPercent=最大MPの割合 / followersPercent=信者数の割合
+                const fundsPctCost = exec.skill.cost.fundsPercent ? Math.max(1, Math.floor(state.cultStats.funds * exec.skill.cost.fundsPercent)) : 0;
+                const mpPctCost = exec.skill.cost.mpPercent ? Math.floor(state.alien.maxMp * exec.skill.cost.mpPercent) : 0;
+                if (exec.skill.cost.funds && state.cultStats.funds < scaleFunds(exec.skill.cost.funds)) {
+                    await showAlert('発動失敗', '資金が足りません！');
+                    return;
+                }
+                if (exec.skill.cost.fundsPercent && state.cultStats.funds < fundsPctCost) {
                     await showAlert('発動失敗', '資金が足りません！');
                     return;
                 }
                 if (exec.skill.cost.mp && state.alien.mp < exec.skill.cost.mp) {
+                    await showAlert('発動失敗', '精神力(MP)が足りません！');
+                    return;
+                }
+                if (exec.skill.cost.mpPercent && state.alien.mp < mpPctCost) {
                     await showAlert('発動失敗', '精神力(MP)が足りません！');
                     return;
                 }
@@ -112,8 +123,10 @@ function renderExecutives() {
                     return;
                 }
 
-                if (exec.skill.cost.funds) state.cultStats.funds -= exec.skill.cost.funds;
+                if (exec.skill.cost.funds) state.cultStats.funds -= scaleFunds(exec.skill.cost.funds);
+                if (fundsPctCost) state.cultStats.funds -= fundsPctCost;
                 if (exec.skill.cost.mp) state.alien.mp -= exec.skill.cost.mp;
+                if (mpPctCost) state.alien.mp -= mpPctCost;
                 if (exec.skill.cost.followers) state.cultStats.followers = Math.max(0, state.cultStats.followers - exec.skill.cost.followers);
                 if (exec.skill.cost.followersPercent) {
                     const pctCost = Math.max(1, Math.floor(state.cultStats.followers * exec.skill.cost.followersPercent));
@@ -135,7 +148,7 @@ function renderExecutives() {
                     state.growthBonus = (state.growthBonus || 0) + exec.skill.effect.growthRate;
                 }
                 if (exec.skill.effect.funds) {
-                    state.cultStats.funds += exec.skill.effect.funds;
+                    state.cultStats.funds += scaleFunds(exec.skill.effect.funds);
                 }
                 
                 render();
@@ -184,15 +197,16 @@ function renderHideout() {
         const div = document.createElement('div');
         div.className = 'collection-item';
 
+        const price = scaleFunds(ev.cost);
         const btn = document.createElement('button');
         btn.className = isOwned ? 'btn-buy-col owned' : 'btn-buy-col';
-        btn.innerText = isOwned ? '所持済' : `${ev.cost}G`;
-        btn.disabled = isOwned || state.cultStats.funds < ev.cost;
+        btn.innerText = isOwned ? '所持済' : `${price}G`;
+        btn.disabled = isOwned || state.cultStats.funds < price;
 
         if (!isOwned) {
             btn.onclick = async () => {
-                if (state.cultStats.funds >= ev.cost) {
-                    state.cultStats.funds -= ev.cost;
+                if (state.cultStats.funds >= price) {
+                    state.cultStats.funds -= price;
                     state.collections.push(ev.id);
                     render();
                     renderHideout();

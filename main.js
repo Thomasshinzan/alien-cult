@@ -1,5 +1,5 @@
 import { state, saveGame, loadGame, computeGrowthRate, isActionLocked } from './state.js';
-import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss, getStageGrowthMultiplier } from './stage.js';
+import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss, getStageGrowthMultiplier, scaleFunds } from './stage.js';
 import { showAlert, updateAlienPower, render } from './ui.js';
 import { initModals } from './modals.js';
 
@@ -152,16 +152,16 @@ btnEndTurn.onclick = async () => {
         const possibleEvents = eventData.filter(ev => {
             if (!state.collections.includes(ev.id)) return false;
             if (ev.effects.funds !== undefined && ev.effects.funds < 0) {
-                return state.cultStats.funds >= Math.abs(ev.effects.funds);
+                return state.cultStats.funds >= Math.abs(scaleFunds(ev.effects.funds));
             }
             return true;
         });
 
         if (possibleEvents.length > 0) {
             const ev = possibleEvents[Math.floor(Math.random() * possibleEvents.length)];
-            if (ev.effects.funds) state.cultStats.funds = Math.max(0, state.cultStats.funds + ev.effects.funds);
+            if (ev.effects.funds) state.cultStats.funds = Math.max(0, state.cultStats.funds + scaleFunds(ev.effects.funds));
             if (ev.effects.suspicion) state.cultStats.suspicion = Math.max(0, state.cultStats.suspicion + ev.effects.suspicion);
-            if (ev.effects.alienMp) state.alien.mp = Math.min(state.alien.maxMp, state.alien.mp + ev.effects.alienMp);
+            if (ev.effects.alienMpPercent) state.alien.mp = Math.min(state.alien.maxMp, state.alien.mp + Math.floor(state.alien.maxMp * ev.effects.alienMpPercent));
             if (ev.effects.humanHp) state.humans.forEach(h => h.hp = Math.min(h.maxHp, h.hp + ev.effects.humanHp));
             if (ev.effects.humanBrainwash) state.humans.forEach(h => h.brainwash = Math.min(100, h.brainwash + ev.effects.humanBrainwash));
             

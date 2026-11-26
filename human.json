@@ -417,9 +417,9 @@
             "willpower": 40,
             "skill": {
                 "name": "権力者の圧力",
-                "description": "資金100を消費して、警戒度を50下げる。",
+                "description": "資金の10%を消費して、警戒度を50下げる。",
                 "cost": {
-                    "funds": 100
+                    "fundsPercent": 0.1
                 },
                 "effect": {
                     "suspicion": -50
@@ -442,9 +442,9 @@
             "willpower": 80,
             "skill": {
                 "name": "広告塔",
-                "description": "精神力(MP)を500消費して、信者の成長率を永続的に+1%する。",
+                "description": "精神力(MP)の80%を消費して、信者の成長率を永続的に+1%する。",
                 "cost": {
-                    "mp": 500
+                    "mpPercent": 0.8
                 },
                 "effect": {
                     "growthRate": 0.01
@@ -467,9 +467,9 @@
             "willpower": 250,
             "skill": {
                 "name": "市政変革",
-                "description": "資金1000を消費して、警戒度を0にする。",
+                "description": "資金の25%を消費して、警戒度を0にする。",
                 "cost": {
-                    "funds": 1000
+                    "fundsPercent": 0.25
                 },
                 "effect": {
                     "suspicionSet": 0
@@ -492,7 +492,7 @@
             "willpower": 500,
             "skill": {
                 "name": "県政掌握",
-                "description": "信者数の5%を消費して、資金を+10000する。",
+                "description": "信者数の5%を消費して、資金を+10000（×ステージ倍率）する。",
                 "cost": {
                     "followersPercent": 0.05
                 },
@@ -517,9 +517,9 @@
             "willpower": 2200,
             "skill": {
                 "name": "国家運営",
-                "description": "資金40000を消費して、信者の成長率を永続的に+1.5%する。",
+                "description": "資金の50%を消費して、信者の成長率を永続的に+1.5%する。",
                 "cost": {
-                    "funds": 40000
+                    "fundsPercent": 0.5
                 },
                 "effect": {
                     "growthRate": 0.015
@@ -542,9 +542,9 @@
             "willpower": 7000,
             "skill": {
                 "name": "外交工作",
-                "description": "資金5000を消費して、警戒度を60下げる。",
+                "description": "資金の25%を消費して、警戒度を60下げる。",
                 "cost": {
-                    "funds": 5000
+                    "fundsPercent": 0.25
                 },
                 "effect": {
                     "suspicion": -60
@@ -567,9 +567,9 @@
             "willpower": 22000,
             "skill": {
                 "name": "裏社会の盟約",
-                "description": "精神力(MP)10000を消費して、資金50000を獲得する。",
+                "description": "精神力(MP)の10%を消費して、資金50000（×ステージ倍率）を獲得する。",
                 "cost": {
-                    "mp": 10000
+                    "mpPercent": 0.1
                 },
                 "effect": {
                     "funds": 50000
@@ -592,9 +592,9 @@
             "willpower": 70000,
             "skill": {
                 "name": "国際世論操作",
-                "description": "資金80000を消費して、信者の成長率を永続的に+2%する。",
+                "description": "資金の50%を消費して、信者の成長率を永続的に+2%する。",
                 "cost": {
-                    "funds": 80000
+                    "fundsPercent": 0.5
                 },
                 "effect": {
                     "growthRate": 0.02
@@ -617,9 +617,9 @@
             "willpower": 220000,
             "skill": {
                 "name": "建国宣言",
-                "description": "資金150000を消費して、信者の成長率を永続的に+2.5%する。",
+                "description": "資金の50%を消費して、信者の成長率を永続的に+2.5%する。",
                 "cost": {
-                    "funds": 150000
+                    "fundsPercent": 0.5
                 },
                 "effect": {
                     "growthRate": 0.025
@@ -644,7 +644,7 @@
                 "name": "権力移譲",
                 "description": "エイリアンに地球人類の支配権を認める",
                 "cost": {
-                    "mp": 10000
+                    "mpPercent": 0.1
                 },
                 "effect": {
                     "ending": true

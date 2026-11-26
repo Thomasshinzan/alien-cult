@@ -12,6 +12,11 @@ export function getStageGrowthMultiplier() {
     return STAGE_GROWTH_MULTIPLIERS[Math.min(state.currentStageIndex, STAGE_GROWTH_MULTIPLIERS.length - 1)];
 }
 
+// 資金の基準値を現在ステージの金額に換算する（スキル効果・イベント効果・コレクション価格用）
+export function scaleFunds(base) {
+    return Math.round(base * getStageGrowthMultiplier());
+}
+
 export async function loadData() {
     const [humanRes, stageRes, eventRes, hideoutRes] = await Promise.all([
         fetch('human.json', { cache: 'no-cache' }),
