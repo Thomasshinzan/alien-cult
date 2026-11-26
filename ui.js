@@ -1,4 +1,4 @@
-import { state, MAX_SLOTS, SAVE_KEY, computeGrowthRate, isActionLocked } from './state.js';
+import { state, MAX_SLOTS, SAVE_KEY, computeGrowthRate, isActionLocked } from './state.js?v=4';
 
 // 大きな数を「1.2億」「345万」のように単位表示する
 export function formatNumber(n) {
@@ -7,7 +7,7 @@ export function formatNumber(n) {
     if (n >= 10000) return (Math.round(n / 1000) / 10).toLocaleString() + '万';
     return n.toLocaleString();
 }
-import { getCurrentStage } from './stage.js';
+import { getCurrentStage } from './stage.js?v=4';
 
 // メイン画面DOM
 const humanListEl = document.getElementById('human-list');

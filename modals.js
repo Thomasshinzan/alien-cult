@@ -1,6 +1,6 @@
-import { state, MAX_SLOTS, saveGame, resetGame } from './state.js';
-import { eventData, hideoutData, scaleFunds } from './stage.js';
-import { showAlert, updateAlienPower, render } from './ui.js';
+import { state, MAX_SLOTS, saveGame, resetGame } from './state.js?v=4';
+import { eventData, hideoutData, scaleFunds } from './stage.js?v=4';
+import { showAlert, updateAlienPower, render } from './ui.js?v=4';
 
 // 幹部モーダルDOM
 const btnExecutives = document.getElementById('btn-executives');

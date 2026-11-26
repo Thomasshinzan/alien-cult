@@ -1,4 +1,4 @@
-import { state } from './state.js';
+import { state } from './state.js?v=4';
 
 export let humanData = null;
 export let stageData = [];

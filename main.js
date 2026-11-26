@@ -1,7 +1,7 @@
-import { state, saveGame, loadGame, computeGrowthRate, isActionLocked } from './state.js';
-import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss, getStageGrowthMultiplier, scaleFunds, migrateClearedSave } from './stage.js';
-import { showAlert, updateAlienPower, render } from './ui.js';
-import { initModals } from './modals.js';
+import { state, saveGame, loadGame, computeGrowthRate, isActionLocked } from './state.js?v=4';
+import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss, getStageGrowthMultiplier, scaleFunds, migrateClearedSave } from './stage.js?v=4';
+import { showAlert, updateAlienPower, render } from './ui.js?v=4';
+import { initModals } from './modals.js?v=4';
 
 const btnBrainwash = document.getElementById('btn-brainwash');
 const btnEndTurn = document.getElementById('btn-end-turn');
