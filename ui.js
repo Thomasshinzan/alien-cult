@@ -60,7 +60,7 @@ export function updateAlienPower() {
 // メイン画面の描画処理
 export function render() {
     const currentStage = getCurrentStage();
-    stageDisplay.innerText = currentStage.name;
+    stageDisplay.innerText = state.gameCleared ? `${currentStage.name}（制覇済み）` : currentStage.name;
     turnDisplay.innerText = state.currentTurn;
 
     document.getElementById('stat-followers').innerText = formatNumber(state.cultStats.followers);

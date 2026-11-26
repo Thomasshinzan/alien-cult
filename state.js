@@ -7,6 +7,7 @@ export const state = {
     selectedHumanId: null,
     currentStageIndex: 0,
     bossSpawned: false,
+    gameCleared: false, // 最終ステージのボスを洗脳済みかどうか（クリア後はボス再出現なし）
     executives: [],
     hideoutLevel: 0,
     collections: [], // 購入済みコレクションのIDリスト
@@ -59,6 +60,7 @@ export function loadGame() {
             
             if (state.currentStageIndex === undefined) state.currentStageIndex = 0;
             if (state.bossSpawned === undefined) state.bossSpawned = false;
+            if (state.gameCleared === undefined) state.gameCleared = false;
             if (state.executives === undefined) state.executives = []; 
             if (state.hideoutLevel === undefined) state.hideoutLevel = 0;
             if (state.growthBonus === undefined) state.growthBonus = 0;

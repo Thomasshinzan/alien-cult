@@ -1,5 +1,5 @@
 import { state, saveGame, loadGame, computeGrowthRate, isActionLocked } from './state.js';
-import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss, getStageGrowthMultiplier, scaleFunds } from './stage.js';
+import { loadData, stageData, eventData, hideoutData, generateHuman, trySpawnBoss, getStageGrowthMultiplier, scaleFunds, migrateClearedSave } from './stage.js';
 import { showAlert, updateAlienPower, render } from './ui.js';
 import { initModals } from './modals.js';
 
@@ -15,6 +15,7 @@ async function initGame() {
             state.humans = [ generateHuman() ];
             updateAlienPower();
         } else {
+            if (migrateClearedSave()) saveGame();
             updateAlienPower();
         }
         render();
@@ -58,12 +59,15 @@ btnBrainwash.onclick = async () => {
             
             if (target.isBoss) {
                 state.executives.push(target.uniqueData);
-                state.currentStageIndex++;
-                state.bossSpawned = false;
                 await showAlert('【ステージクリア】', `${target.name}を完全に洗脳し、幹部として迎え入れました！`);
-                
-                if (state.currentStageIndex >= stageData.length) {
+
+                if (state.currentStageIndex >= stageData.length - 1) {
+                    state.gameCleared = true;
+                    state.bossSpawned = true; // 最終ボスは再出現させない
                     await showAlert('【地球征服完了】', 'おめでとうございます！全てのステージをクリアしました。');
+                } else {
+                    state.currentStageIndex++;
+                    state.bossSpawned = false;
                 }
             }
 
@@ -201,11 +205,14 @@ btnEndTurn.onclick = async () => {
             
             if (human.isBoss) {
                 state.executives.push(human.uniqueData);
-                state.currentStageIndex++;
-                state.bossSpawned = false;
                 await showAlert('【ステージクリア】', `${human.name}を完全に洗脳し、幹部として迎え入れました！`);
-                if (state.currentStageIndex >= stageData.length) {
+                if (state.currentStageIndex >= stageData.length - 1) {
+                    state.gameCleared = true;
+                    state.bossSpawned = true; // 最終ボスは再出現させない
                     await showAlert('【地球征服完了】', 'おめでとうございます！全てのステージをクリアしました。');
+                } else {
+                    state.currentStageIndex++;
+                    state.bossSpawned = false;
                 }
             }
             if (state.selectedHumanId === human.id) state.selectedHumanId = null;

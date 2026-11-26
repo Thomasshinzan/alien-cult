@@ -126,7 +126,23 @@ export function generateHuman() {
     };
 }
 
+// 旧セーブ救済: 最終ボス洗脳後に currentStageIndex が範囲外（=stageData.length）まで
+// 進んでしまったセーブを、最終ステージのクリア済み状態に正す
+export function migrateClearedSave() {
+    if (stageData.length === 0) return false;
+    if (state.currentStageIndex < stageData.length) return false;
+    state.currentStageIndex = stageData.length - 1;
+    state.gameCleared = true;
+    state.bossSpawned = true;
+    state.humans = state.humans.filter(h => !h.isBoss); // 再出現した最終ボスの複製を取り除く
+    if (state.selectedHumanId !== null && !state.humans.some(h => h.id === state.selectedHumanId)) {
+        state.selectedHumanId = null;
+    }
+    return true;
+}
+
 export function trySpawnBoss() {
+    if (state.gameCleared) return null;
     if (state.bossSpawned) return null;
 
     const stage = getCurrentStage();
