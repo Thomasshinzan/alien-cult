@@ -159,13 +159,31 @@ btnEndTurn.onclick = async () => {
 
         if (possibleEvents.length > 0) {
             const ev = possibleEvents[Math.floor(Math.random() * possibleEvents.length)];
-            if (ev.effects.funds) state.cultStats.funds = Math.max(0, state.cultStats.funds + scaleFunds(ev.effects.funds));
-            if (ev.effects.suspicion) state.cultStats.suspicion = Math.max(0, state.cultStats.suspicion + ev.effects.suspicion);
-            if (ev.effects.alienMpPercent) state.alien.mp = Math.min(state.alien.maxMp, state.alien.mp + Math.floor(state.alien.maxMp * ev.effects.alienMpPercent));
-            if (ev.effects.humanHp) state.humans.forEach(h => h.hp = Math.min(h.maxHp, h.hp + ev.effects.humanHp));
-            if (ev.effects.humanBrainwash) state.humans.forEach(h => h.brainwash = Math.min(100, h.brainwash + ev.effects.humanBrainwash));
-            
-            await showAlert('【イベント発生】', ev.message);
+            const applied = [];
+            if (ev.effects.funds) {
+                const amt = scaleFunds(ev.effects.funds);
+                state.cultStats.funds = Math.max(0, state.cultStats.funds + amt);
+                applied.push(`資金 ${amt >= 0 ? '+' : ''}${amt.toLocaleString()}`);
+            }
+            if (ev.effects.suspicion) {
+                state.cultStats.suspicion = Math.max(0, state.cultStats.suspicion + ev.effects.suspicion);
+                applied.push(`警戒度 ${ev.effects.suspicion >= 0 ? '+' : ''}${ev.effects.suspicion}`);
+            }
+            if (ev.effects.alienMpPercent) {
+                const before = state.alien.mp;
+                state.alien.mp = Math.min(state.alien.maxMp, state.alien.mp + Math.floor(state.alien.maxMp * ev.effects.alienMpPercent));
+                applied.push(`精神力 +${state.alien.mp - before}`);
+            }
+            if (ev.effects.humanHp) {
+                state.humans.forEach(h => h.hp = Math.min(h.maxHp, h.hp + ev.effects.humanHp));
+                applied.push(ev.effects.humanHp >= 999 ? '全員の体力 全回復' : `全員の体力 ${ev.effects.humanHp}`);
+            }
+            if (ev.effects.humanBrainwash) {
+                state.humans.forEach(h => h.brainwash = Math.min(100, h.brainwash + ev.effects.humanBrainwash));
+                applied.push(`全員の洗脳度 +${ev.effects.humanBrainwash}`);
+            }
+
+            await showAlert('【イベント発生】', applied.length > 0 ? `${ev.message}\n\n【効果】${applied.join(' / ')}` : ev.message);
         }
     }
 
