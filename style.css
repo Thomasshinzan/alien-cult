@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 15px;
     box-sizing: border-box;
-    padding-bottom: 120px;
+    padding-bottom: 165px;
 }
 
 h1 {
@@ -72,13 +72,15 @@ h1 {
 
 .stat-item {
     text-align: center;
-    width: 30%;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .stat-value {
-    font-size: 1.5rem;
+    font-size: clamp(0.95rem, 4.6vw, 1.5rem);
     font-weight: bold;
     color: #fff;
+    white-space: nowrap;
 }
 
 .stat-label {
@@ -194,8 +196,9 @@ h1 {
 
 .button-group { display: flex; gap: 10px; }
 .button-group button {
-    flex: 1; padding: 15px; color: #fff; border: none; border-radius: 8px;
-    font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s;
+    flex: 1; padding: 15px 8px; color: #fff; border: none; border-radius: 8px;
+    font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s;
+    white-space: nowrap;
 }
 
 #btn-brainwash { background: var(--accent-color); }
